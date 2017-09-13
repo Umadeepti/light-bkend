@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    
+	
+    <changeSet id="OpportunityModelChangeOPS-557" author="Laurence">
+		<sqlFile path="scripts/OpportunityModelChangeOPS-557.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<!--Insert the Solutions into the Database. Will remove existing solutions-->
+    <changeSet id="InsertTitoSolutions-OPS-570" author="Laurence">
+		<sqlFile path="scripts/InsertTitoSolutions-OPS-570.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<!--Insert the Firms into the Database. Will remove existing solutions. These are based upon a data extraction from contracts in SharePoint-->
+    <changeSet id="InsertTitoFirms-OPS-570" author="Laurence">
+		<sqlFile path="scripts/InsertTitoFirms-OPS-570.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	</databaseChangeLog>

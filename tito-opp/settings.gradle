@@ -1,0 +1,6 @@
+//Subprojects
+include 'tito-opp-application'
+include 'tito-opp-data'
+include 'tito-opp-test-automation'
+
+rootProject.name = 'tito-opp'

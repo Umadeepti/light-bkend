@@ -1,0 +1,96 @@
+node('tito'){
+	def MAJOR_VERSION = "0"
+	def MINOR_VERSION = "0"
+	def BUILD_NUMBER = "${env.BUILD_NUMBER}"
+	def SERVICE_VERSION = MAJOR_VERSION + "." + MINOR_VERSION + "." + BUILD_NUMBER
+	def GIT_BRANCH = "${BRANCH}"
+
+	stage("Check out code") {
+		checkout([ 
+			scm: [
+				$class: 'GitSCM', 
+				branches: [[name: '${BRANCH}']], 
+				doGenerateSubmoduleConfigurations: false, 
+				extensions: [
+					[$class: 'PreBuildMerge', 
+						options: [
+							fastForwardMode: 'FF', 
+							mergeRemote: 'origin', 
+							mergeStrategy: 'default', 
+							mergeTarget: 'master'
+						]],
+						[$class: 'RelativeTargetDirectory', relativeTargetDir: 'tito-opp'],
+						[$class: 'CleanBeforeCheckout']
+					], 
+					submoduleCfg: [], 
+					userRemoteConfigs: [[credentialsId: 'd05082a9-a580-45ac-bea4-e5d3b1455757', url: 'https://bitbucket.org/ibcdbs/tito-opp.git']]
+				]])
+		checkout([ 
+			scm: [
+				$class: 'GitSCM', 
+				branches: [[name: 'master']], 
+				doGenerateSubmoduleConfigurations: false, 
+				extensions: [
+						[$class: 'RelativeTargetDirectory', relativeTargetDir: 'tito-data'],
+						[$class: 'CleanBeforeCheckout']
+					], 
+					submoduleCfg: [], 
+					userRemoteConfigs: [[credentialsId: 'd05082a9-a580-45ac-bea4-e5d3b1455757', url: 'https://bitbucket.org/ibcdbs/tito-data.git']]
+				]])
+	}
+	stage("tito-data"){
+		dir('tito-data'){
+			sh './gradlew scorch baseline update'
+		}
+	}
+
+	stage("gradle build"){
+		dir('tito-opp'){
+			sh """
+				cd tito-opp-data
+				./gradlew update
+			"""
+
+			sh """
+				./gradlew clean test assemble
+			"""
+		}
+	}
+
+	stage("Build Docker image"){
+		dir('tito-opp'){
+			withCredentials([usernamePassword(credentialsId: 'jfrog_devops', passwordVariable: 'JFROG_PW', usernameVariable: 'JFROG_U')]) {
+	    		sh """
+	    		    sudo docker login dominionconsulting-tito.jfrog.io -u $JFROG_U -p $JFROG_PW
+    	    		sudo docker build . -t dominionconsulting-tito.jfrog.io/tito-opp:${SERVICE_VERSION} -t dominionconsulting-tito.jfrog.io/tito-opp:latest
+    	    		sudo docker push dominionconsulting-tito.jfrog.io/tito-opp:${SERVICE_VERSION}
+    	    		sudo docker push dominionconsulting-tito.jfrog.io/tito-opp:latest
+    	    	"""
+			}
+		}
+	}
+
+	stage("Update DEV DB"){
+		dir('tito-opp'){
+			withCredentials([usernamePassword(credentialsId: 'tito_dev_db', passwordVariable: 'DB_PW', usernameVariable: 'DB_U')]){
+				sh """
+					cd tito-opp-data
+					./gradlew update -PdbUrl=jdbc:mysql://tito.cp0cgqfliu5q.us-east-1.rds.amazonaws.com/ -PdbUsername=$DB_U -PdbPassword=$DB_PW
+				"""
+			}
+		}
+	}
+	
+	stage("Push image to ECS"){
+		dir('tito-opp'){
+			sh """
+			  export SERVICE_VERSION=${SERVICE_VERSION}
+			  /home/jenkins/ecs-cli compose --verbose service up --deployment-min-healthy-percent 0
+			"""
+		}
+	}
+
+	stage("Merge branch to master"){
+		build job: 'tito-opp-merge-job', parameters: [string(name: 'BRANCH', value: GIT_BRANCH)], wait: false
+	}
+}

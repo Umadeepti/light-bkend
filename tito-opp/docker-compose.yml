@@ -1,0 +1,10 @@
+version: '2'
+services:
+  tito_opp:
+    image: dominionconsulting-tito.jfrog.io/tito-opp:${SERVICE_VERSION}
+    cpu_shares: 100
+    mem_limit: 524288000
+    ports:
+      - "8001:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
