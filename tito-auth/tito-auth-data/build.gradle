@@ -1,0 +1,61 @@
+apply plugin: 'java'
+apply plugin: 'liquibase'
+
+buildscript {
+	repositories{
+		mavenCentral()
+	}
+
+	dependencies {
+		classpath 'org.liquibase:liquibase-core:3.5.3'
+		classpath('org.liquibase:liquibase-gradle-plugin:1.2.4'){
+			exclude(module: 'liquibase-core')
+		}
+		classpath 'mysql:mysql-connector-java:5.1.42'
+	}
+}
+
+repositories {
+	jcenter()
+	mavenCentral()
+	mavenLocal()
+}
+
+configurations {
+	driver
+}
+
+dependencies {
+	driver group: 'mysql', name: 'mysql-connector-java', version: '5.1.42'
+	testImplementation 'junit:junit:4.12'
+}
+
+URLClassLoader loader = GroovyObject.class.classLoader
+configurations.driver.each { File file -> loader.addURL(file.toURL())}
+
+task baseline(dependsOn: dropAll){}
+
+task scorch {
+	doLast {
+		def dbURL = project.ext.dbUrl
+    		def dbUserName = project.ext.dbUsername
+    		def dbPassword = project.ext.dbPassword
+    		def dbDriver = 'com.mysql.jdbc.Driver'
+    		def db = groovy.sql.Sql.newInstance(dbURL,dbUserName,dbPassword,dbDriver)
+		db.execute ''' drop database if exists tito '''
+		db.execute ''' create database tito '''
+	}
+}
+
+task liquibase {
+	liquibase {
+		activities {
+			main {
+				changeLogFile 'src/main/db/changelog.xml'
+				url project.ext.dbUrl+"tito"
+				username project.ext.dbUsername
+				password project.ext.dbPassword
+			}
+		}
+	}
+}

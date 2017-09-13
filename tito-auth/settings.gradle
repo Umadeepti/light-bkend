@@ -1,0 +1,3 @@
+include 'tito-auth-application'
+include 'tito-auth-data'
+include 'tito-auth-test-automation'

@@ -1,0 +1,4 @@
+/.gradle/
+**/build/
+/tito-auth/tito-auth-application/
+/bin/
