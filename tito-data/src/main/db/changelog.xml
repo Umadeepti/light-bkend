@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="createPeopleTable" author="Uma">
+		<sqlFile path="scripts/createPeopleTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="createSolutionsTable" author="Uma">
+		<sqlFile path="scripts/createSolutionsTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="createFirmsTable" author="Uma">
+		<sqlFile path="scripts/createFirmsTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="createClearancesTable" author="Uma">
+		<sqlFile path="scripts/createClearancesTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="createAccountsTable" author="Uma">
+		<sqlFile path="scripts/createAccountsTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="createSkillsTable" author="Uma">
+		<sqlFile path="scripts/createSkillsTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="createClientsTable" author="Uma">
+		<sqlFile path="scripts/createClientsTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="createSubclientsTable" author="Uma">
+		<sqlFile path="scripts/createSubclientsTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="createOpportunitiesTable" author="Uma">
+		<sqlFile path="scripts/createOpportunitiesTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="createAccountNotesTable" author="Uma">
+		<sqlFile path="scripts/createAccountNotesTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="createContractsTable" author="Uma">
+		<sqlFile path="scripts/createContractsTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="createCertificationsTable" author="Uma">
+		<sqlFile path="scripts/createCertificationsTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="createProjectsTable" author="Uma">
+		<sqlFile path="scripts/createProjectsTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="createOpportunityNotesTable" author="Uma">
+		<sqlFile path="scripts/createOpportunityNotesTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="createOpportunityTimelinesTable" author="Uma">
+		<sqlFile path="scripts/createOpportunityTimelinesTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="createOpportunityEventsTable" author="Uma">
+		<sqlFile path="scripts/createOpportunityEventsTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="createOpportunityStepsTable" author="Uma">
+		<sqlFile path="scripts/createOpportunityStepsTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="createOpportunityRolesTable" author="Uma">
+		<sqlFile path="scripts/createOpportunityRolesTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="createProjectRolesTable" author="Uma">
+		<sqlFile path="scripts/createProjectRolesTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="createPastPerformancesTable" author="Uma">
+		<sqlFile path="scripts/createPastPerformancesTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="createOpportunityPartnersTable" author="Uma">
+		<sqlFile path="scripts/createOpportunityPartnersTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="createPartnerSkillsTable" author="Uma">
+		<sqlFile path="scripts/createPartnerSkillsTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="createOpportunityCompetitorsTable" author="Uma">
+		<sqlFile path="scripts/createOpportunityCompetitorsTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="createOpportunityRoleSkillsTable" author="Uma">
+		<sqlFile path="scripts/createOpportunityRoleSkillsTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="createOpportunitySolutionsTable" author="Uma">
+		<sqlFile path="scripts/createOpportunitySolutionsTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="createPersonOpportunityRolesTable" author="Uma">
+		<sqlFile path="scripts/createPersonOpportunityRolesTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="createProjectRoleSkillsTable" author="Uma">
+		<sqlFile path="scripts/createProjectRoleSkillsTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="createProjectSolutionsTable" author="Uma">
+		<sqlFile path="scripts/createProjectSolutionsTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="createPersonProjectRolesTable" author="Uma">
+		<sqlFile path="scripts/createPersonProjectRolesTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="createOpportunityPastPerformancesTable"
+		author="Uma">
+		<sqlFile path="scripts/createOpportunityPastPerformancesTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="createPersonSkillsTable" author="Uma">
+		<sqlFile path="scripts/createPersonSkillsTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="createPersonCertificationsTable" author="Uma">
+		<sqlFile path="scripts/createPersonCertificationsTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="createPersonClearancesTable" author="Uma">
+		<sqlFile path="scripts/createPersonClearancesTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+
+	<changeSet id="createOpportunityTimelinesTable" author="Uma">
+		<sqlFile path="scripts/createOpportunityTimelinesTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="createOpportunityIncumbentsTable" author="Uma">
+		<sqlFile path="scripts/createOpportunityIncumbentsTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="insertPeopleTable" author="Uma">
+		<sqlFile path="scripts/insertPeopleTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="insertAccountsTable" author="Uma">
+		<sqlFile path="scripts/insertAccountsTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+	<changeSet id="insertClientsTable" author="Uma">
+		<sqlFile path="scripts/insertClientsTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+	<changeSet id="insertSubclientsTable" author="Uma">
+		<sqlFile path="scripts/insertSubclientsTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+	<changeSet id="insertOpportunitiesTable" author="Uma">
+		<sqlFile path="scripts/insertOpportunitiesTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+	<changeSet id="updateOpportunitiesTable" author="Uma">
+		<sqlFile path="scripts/updateOpportunitiesTable.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+</databaseChangeLog>
